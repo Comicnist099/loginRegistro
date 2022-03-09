@@ -1,18 +1,19 @@
 package com.poi.loginregistro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.poi.loginregistro.Modelos.Carrera
 import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.helpers.General
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class Pregunta(val contenido: String, val respuesta: Boolean)
 
@@ -72,21 +73,43 @@ class MainActivity : AppCompatActivity() {
                         })
 
                     Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
+                    val linearLayout = LinearLayout(applicationContext)
+
+                    // populate layout with your image and text
+                    // or whatever you want to put in here
+                    val imageView = ImageView(applicationContext)
+
+                    // adding image to be shown
+                    imageView.setImageResource(R.drawable.banner2)
+
+                    // adding image to linearlayout
+                    linearLayout.addView(imageView)
+                    val toast = Toast(applicationContext)
+
+                    // showing toast on bottom
+                    toast.setGravity(Gravity.BOTTOM, 0, 100)
+                    toast.duration = Toast.LENGTH_LONG
+
+                    // setting view of toast to linear layout
+                    toast.setView(linearLayout)
 
                     val intent = Intent(this, LatestMessagesA::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                    toast.show()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT)
                         .show()
+
+
+
                 }
 
 
         }
 
     }
-
 
 
 

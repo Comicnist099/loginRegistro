@@ -62,6 +62,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
                 Toast.makeText(this, "Faltan Campos de rellenar", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+
             }
             else {
                 saveUsertoDatabase(users("", username, email, contra, status, encrypted, selected, tasks, autoCompleteTextView.text.toString() ))
