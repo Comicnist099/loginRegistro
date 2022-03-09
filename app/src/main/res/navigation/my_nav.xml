@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/menu_new_message">
+
+    <fragment
+        android:id="@+id/menu_new_message"
+        android:name="com.poi.loginregistro.mensajesPriv"
+        android:label="SunTeams"
+        tools:layout="@layout/fragment_mensajes_priv" />
+
+    <fragment
+        android:id="@+id/group_make"
+        android:name="com.poi.loginregistro.group_fragment"
+        android:label="SunTeams"
+        tools:layout="@layout/fragment_group_fragment" />
+    <fragment
+        android:id="@+id/menu_activity"
+        android:name="com.poi.loginregistro.TasksFragment"
+        android:label="SunTeams"
+        tools:layout="@layout/fragment_tasks" />
+</navigation>

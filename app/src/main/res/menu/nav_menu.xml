@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/menu_new_message"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="Messages"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/group_make"
+        android:icon="@android:drawable/stat_notify_more"
+        android:title="Groups"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_activity"
+        android:icon="?attr/actionModePasteDrawable"
+        android:title="Activities"
+        app:showAsAction="never" />
+
+</menu>

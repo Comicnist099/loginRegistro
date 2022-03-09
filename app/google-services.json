@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "331548452520",
+    "firebase_url": "https://multimedios2-4973d-default-rtdb.firebaseio.com",
+    "project_id": "multimedios2-4973d",
+    "storage_bucket": "multimedios2-4973d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331548452520:android:0444675fdf26b7f354449d",
+        "android_client_info": {
+          "package_name": "com.poi.loginregistro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331548452520-h8h4gk5nd2mt81fuak2hi4uclj18ujlr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCswkzRSMZsyHXekttWpDJXyvZs6IZ1FXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331548452520-h8h4gk5nd2mt81fuak2hi4uclj18ujlr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

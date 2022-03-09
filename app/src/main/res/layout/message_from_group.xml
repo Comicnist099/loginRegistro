@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/message_container"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#E4E4E4"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/tv_from_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="Que tal buen día!" />
+
+        <TextView
+            android:id="@+id/tv_from_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            tools:text="23:00" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.poi.loginregistro">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LoginRegistro"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SendEmailActivity"
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GroupLogActivity" />
+        </activity>
+        <activity
+            android:name=".DeliverTaskActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+        <activity
+            android:name=".CrearTasksActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+
+        <activity
+            android:name=".CreateGroupActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+        <activity
+            android:name=".ChatLogActivity2"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NewMessageActivity" />
+        </activity>
+        <activity
+            android:name=".GroupLogActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+        <activity
+            android:name=".NewMessageActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestMessagesA" />
+        </activity>
+        <activity
+            android:name=".LatestMessagesA"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignIng"
+            android:exported="true" />
+    </application>
+
+</manifest>

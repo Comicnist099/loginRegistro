@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:id="@+id/message_container"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+
+            android:id="@+id/ivPerfil"
+            android:layout_width="47dp"
+            android:layout_height="44dp"
+            android:src="@drawable/sun2" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            tools:text="Fulanito:" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="Que tal buen día!" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            tools:text="23:00" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

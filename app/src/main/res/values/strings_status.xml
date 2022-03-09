@@ -1,0 +1,13 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="status_usuario">
+    <item>Disponible</item>
+    <item>Ocupado</item>
+    <item>No molestar</item>
+    <item>Ausente</item>
+    <item>No disponible</item>
+    </string-array>
+
+    <!-- Strings used for fragments for navigation -->
+</resources>
