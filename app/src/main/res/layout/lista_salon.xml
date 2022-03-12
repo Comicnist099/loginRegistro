@@ -15,7 +15,7 @@
         android:layout_width="246dp"
 
         android:layout_height="114dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/bordes"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,13 +34,13 @@
                 android:id="@+id/ivPerfil"
                 android:layout_width="71dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/sun2" />
+                android:src="@drawable/multimedios" />
 
             <TextView
                 android:id="@+id/textNombreSalon"
                 android:layout_width="148dp"
                 android:layout_height="match_parent"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ivPerfil"
                 app:layout_constraintEnd_toEndOf="parent"

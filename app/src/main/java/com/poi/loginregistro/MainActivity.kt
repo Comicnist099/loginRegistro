@@ -1,36 +1,45 @@
 package com.poi.loginregistro
 
 import android.content.Intent
+
 import android.os.Bundle
+
 import android.util.Log
 import android.view.Gravity
-import android.view.View
+
 import android.widget.*
+
 import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.poi.loginregistro.Modelos.users
+
 import com.poi.loginregistro.helpers.General
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
-
-class Pregunta(val contenido: String, val respuesta: Boolean)
 
 class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        supportActionBar?.title = "SunTeams"
+
+
+        supportActionBar?.title = "Multimedios Chat"
 
         val correoText = findViewById<EditText>(R.id.correo_text2)
         val password = findViewById<EditText>(R.id.contr_text2)
         val button = findViewById<Button>(R.id.btnRegister2)
         val account = findViewById<TextView>(R.id.noAccount)
         val databaseReference : DatabaseReference = FirebaseDatabase.getInstance().reference
+        val ImagenPerfil = findViewById<ImageView>(R.id.Imgid)
+        val BtnCargar = findViewById<Button>(R.id.btnCargarImg)
+
 
 
         account.setOnClickListener {
@@ -106,12 +115,10 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-
         }
 
     }
-
-
+/////////////////// FOTO
 
 
 

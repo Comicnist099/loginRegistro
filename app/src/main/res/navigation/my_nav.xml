@@ -8,17 +8,25 @@
     <fragment
         android:id="@+id/menu_new_message"
         android:name="com.poi.loginregistro.mensajesPriv"
-        android:label="SunTeams"
-        tools:layout="@layout/fragment_mensajes_priv" />
+        android:label="Multimedios Chat"
+        tools:layout="@layout/fragment_mensajes_priv" >
+        <action
+            android:id="@+id/action_menu_new_message_to_group_make"
+            app:destination="@id/group_make" />
+    </fragment>
 
     <fragment
         android:id="@+id/group_make"
         android:name="com.poi.loginregistro.group_fragment"
-        android:label="SunTeams"
-        tools:layout="@layout/fragment_group_fragment" />
+        android:label="Multimedios Chat"
+        tools:layout="@layout/fragment_group_fragment" >
+        <action
+            android:id="@+id/action_group_make_to_menu_activity"
+            app:destination="@id/menu_activity" />
+    </fragment>
     <fragment
         android:id="@+id/menu_activity"
         android:name="com.poi.loginregistro.TasksFragment"
-        android:label="SunTeams"
+        android:label="Multimedios Chat"
         tools:layout="@layout/fragment_tasks" />
 </navigation>

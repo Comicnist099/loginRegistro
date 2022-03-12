@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#3A7C85">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scaleX="1"
+    android:scaleY="1">
 
     <ImageView
         android:id="@+id/circleSelected"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
 
         android:background="@drawable/ic_circle_state"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,16 +19,14 @@
     </ImageView>
 
     <LinearLayout
-
         android:layout_width="392dp"
-        android:layout_height="80dp"
-        android:layout_alignParentEnd="true"
+        android:layout_height="60dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="19dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/bordes"
 
-
-        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
 
@@ -35,9 +34,11 @@
             android:id="@+id/imageViewsun"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/sun2"
+
+            android:src="@drawable/multimedios"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
+
 
         <TextView
             android:id="@+id/contactName"
@@ -46,6 +47,7 @@
 
             android:layout_marginStart="10dp"
             android:text="Username"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewsun"
@@ -57,10 +59,10 @@
 
         <TextView
             android:id="@+id/status"
-            android:layout_width="238dp"
+            android:layout_width="100dp"
             android:layout_height="19dp"
             android:layout_below="@+id/contactName"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="-100dp"
             android:drawableStart="@drawable/clock"
             android:text="Username"
             android:textAlignment="textStart"

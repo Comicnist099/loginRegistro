@@ -34,7 +34,7 @@ class LatestMessagesA : AppCompatActivity() {
         //listenFromLatestMessages()
         fetchCurrentUser()
 
-        supportActionBar?.title = "SunTeams"
+        supportActionBar?.title = "Multimedios Chat"
 
         verifyUserIsLoggedIn()
 
@@ -45,10 +45,6 @@ class LatestMessagesA : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.menu_new_message, R.id.group_make, R.id.menu_activity))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
-
-
 
     }
 

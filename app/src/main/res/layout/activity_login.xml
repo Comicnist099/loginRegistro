@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A7C85">
+    android:background="#70578E">
 
     <EditText
         android:id="@+id/correo_text2"
@@ -25,6 +25,7 @@
         android:id="@+id/contr_text2"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:hint="Password"
@@ -41,23 +42,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="#FFC107"
-        android:text="Login"
+        android:backgroundTint="#4c4685"
+        android:text="Entrar"
         android:textColor="#082627"
         app:layout_constraintEnd_toEndOf="@+id/contr_text2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/contr_text2"
         app:layout_constraintTop_toBottomOf="@+id/contr_text2"
-        app:rippleColor="#FFC107"
-        app:strokeColor="#FFC107" />
+        app:rippleColor="#082627"
+        app:strokeColor="#082627" />
 
     <TextView
         android:id="@+id/noAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Don't have an account?"
-        android:textColor="#FFFFFF"
+        android:text="¿Eres nuevo? ¡Registrate!"
+        android:textColor="#100f12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,21 +66,22 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="144dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="236dp"
+        android:layout_height="206dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sunflower" />
+        app:srcCompat="@drawable/multimedios" />
 
     <TextView
         android:id="@+id/lgn"
-        android:layout_width="77dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="44dp"
-        android:text="LOGIN"
+        android:layout_width="187dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
+        android:text="Inicio de sesión"
+        android:textColor="#100f12"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

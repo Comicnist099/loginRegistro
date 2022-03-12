@@ -41,8 +41,6 @@ class SelectEmailAdapter(val contacts : List<contacto>) : RecyclerView.Adapter<S
             holder.view.visibility= View.GONE
         }else{
 
-
-
             holder.view.setOnClickListener{
                 contacts[position].isSelected=! contacts[position].isSelected
 
@@ -51,10 +49,7 @@ class SelectEmailAdapter(val contacts : List<contacto>) : RecyclerView.Adapter<S
                 }else{
                     holder.view.circleSelected.setBackgroundResource(com.poi.loginregistro.R.drawable.ic_circle_state_active)
                 }
-
-
             }
-
             holder.view.contactName.text= contact.username
 
 

@@ -13,6 +13,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_new_message.*
+import kotlinx.android.synthetic.main.fragment_mensajes_priv.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 class NewMessageActivity : AppCompatActivity() {
@@ -64,7 +65,7 @@ class NewMessageActivity : AppCompatActivity() {
                     finish()
                 }
 
-                recyclerViewNewM.adapter = adapter
+                    recyclerViewNewM.adapter = adapter
             }
             override fun onCancelled(error: DatabaseError) {
             }

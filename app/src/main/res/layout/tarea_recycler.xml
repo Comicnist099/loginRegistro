@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="5dp"
-        android:background="@color/black"
+        android:background="@drawable/bordes"
+
         >
         <TextView
             android:id="@+id/groupNameAssignment"
@@ -29,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
-            android:text="Tarea: Yoshikage Kira mi varon"
+            android:text="Hace un trabajo escrito"
 
             android:textColor="@color/white"
             android:textSize="15dp"></TextView>
