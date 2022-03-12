@@ -51,6 +51,7 @@ class GroupLogActivity : AppCompatActivity() {
             fetchCurrentUser()
         }
 
+
         sendEmailButton.setOnClickListener{
             val intent = Intent(this,SendEmailActivity::class.java)
             intent.putExtra("teamUid",teamUid)

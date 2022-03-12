@@ -1,5 +1,8 @@
 package com.poi.loginregistro
 
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +28,7 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         var currentUser: users? = null
         val TAG = "SettingsLog"
     }
+    lateinit var ImageUri: Uri
 
     private val database = FirebaseDatabase.getInstance()
     private lateinit var storageReference : StorageReference
@@ -38,8 +42,19 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+
+binding.Prueba.setOnClickListener{
+    fetchCurrentUser()
+}
+
         val status = resources.getStringArray(R.array.status_usuario)
         val adapter = ArrayAdapter(this, R.layout.list_item_status, status)
+
+        binding.imageView5.setOnClickListener{
+            selectImage()
+        }
 
         storageReference= FirebaseStorage.getInstance().getReference("users")
 
@@ -49,6 +64,18 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
 
         editarUsuario()
+        val storageRef =
+            FirebaseStorage.getInstance().reference.child("images/W5oi5pRKXffbbAyaLzi5THFhPDL2")
+        val localFile = java.io.File.createTempFile("tempImage", "jpg")
+
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            binding.imageView5.setImageBitmap(bitmap)
+
+        }.addOnFailureListener {
+            Toast.makeText(this@SettingsActivity, "NO JALO el colocamiento de imagen", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 
@@ -63,6 +90,7 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(users::class.java)
+
 
 
                 btnSend.setOnClickListener {
@@ -118,6 +146,53 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
 
+    private fun selectImage() {
+
+        val intent= Intent()
+        intent.type="image/*"
+        intent.action= Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(intent,100)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==100&& resultCode==RESULT_OK){
+
+            ImageUri=data?.data!!
+            binding.imageView5.setImageURI(ImageUri)
+
+        }
+
+    }
+    private fun fetchCurrentUser() {
+
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+                Log.d("LatestMessages", "Current user ${LatestMessagesA.currentUser?.username}")
+
+                val users = SettingsActivity.currentUser?.encrypted
+
+                if (users.toString().equals("activated")) {
+                    //send message to firebase
+                }else{
+                    Log.d("AHUEVO","JALO")
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+
+            }
+        }
+        )
+    }
 
 
 

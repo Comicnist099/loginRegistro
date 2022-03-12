@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.poi.loginregistro.Modelos.Logros
 import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +25,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
     private val File = 1
     lateinit var binding: ActivityMainBinding
     lateinit var ImageUri:Uri
-
+    lateinit var logros: Logros
 
     var uid=""
     private val database = FirebaseDatabase.getInstance()
@@ -60,18 +62,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
         val password = findViewById<EditText>(R.id.contr_text)
         val button = findViewById<Button>(R.id.btnRegister)
 
-    val storageRef =
-        FirebaseStorage.getInstance().reference.child("images/W5oi5pRKXffbbAyaLzi5THFhPDL2")
-    val localFile = java.io.File.createTempFile("tempImage", "jpg")
 
-    storageRef.getFile(localFile).addOnSuccessListener {
-        val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-        binding.Imgid.setImageBitmap(bitmap)
-
-    }.addOnFailureListener {
-        Toast.makeText(this@SignIng, "NO JALO el colocamiento de imagen", Toast.LENGTH_SHORT).show()
-
-    }
 
 
         button.setOnClickListener{
@@ -83,6 +74,12 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
             val encrypted = "deactivated"
             val tasks = ""
             val selected = false
+            var logro_createUsuario  = true
+            var logro_createGrupo =false
+            var logro_login  = false
+            var logro_cambiaEstado  = false
+
+
 
             if(username.isEmpty() || email.isEmpty() || contra.isEmpty()) {
 
@@ -90,14 +87,35 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
                 return@setOnClickListener
             }
             else {
-                saveUsertoDatabase(users("", username, email, contra, status, encrypted, selected, tasks, "" ))
+                saveUsertoDatabase(users("", username, email, contra, status, encrypted, selected, tasks, "" ,logro_createUsuario,
+                    logro_createGrupo,logro_login,logro_cambiaEstado))
 
 
             }
 
             Log.d("SignIng", "Email is: " + email)
             Log.d("SignIng", "Password:  $contra")
+            val linearLayout = LinearLayout(applicationContext)
 
+            // populate layout with your image and text
+            // or whatever you want to put in here
+            val imageView = ImageView(applicationContext)
+
+            // adding image to be shown
+            imageView.setImageResource(R.drawable.banner2)
+
+            // adding image to linearlayout
+            linearLayout.addView(imageView)
+            val toast = Toast(applicationContext)
+
+            // showing toast on bottom
+            toast.setGravity(Gravity.BOTTOM, 0, 100)
+            toast.duration = Toast.LENGTH_LONG
+
+            // setting view of toast to linear layout
+            toast.setView(linearLayout)
+
+            toast.show()
             //registrarse()
             //finish()
         }
@@ -175,6 +193,9 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
                 if(!it.isSuccessful) return@addOnCompleteListener
 
                 Log.d("SignIng", "Usuario creado con exito: ${it.result?.user?.uid}")
+
+
+
 
                 usuario.uid = FirebaseAuth.getInstance().currentUser!!.uid
                 uid= FirebaseAuth.getInstance().currentUser!!.uid
