@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                     val imageView = ImageView(applicationContext)
 
                     // adding image to be shown
-                    imageView.setImageResource(R.drawable.banner2)
+                    imageView.setImageResource(R.drawable.logro_bienvenido)
 
                     // adding image to linearlayout
                     linearLayout.addView(imageView)

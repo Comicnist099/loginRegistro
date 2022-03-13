@@ -1,10 +1,13 @@
 package com.poi.loginregistro
 
+import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -20,6 +23,9 @@ import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.databinding.ActivitySettingsBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_settings.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
@@ -29,7 +35,8 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         val TAG = "SettingsLog"
     }
     lateinit var ImageUri: Uri
-
+    lateinit var UserUid:String
+    lateinit var UserNick:String
     private val database = FirebaseDatabase.getInstance()
     private lateinit var storageReference : StorageReference
     private lateinit var binding: ActivitySettingsBinding
@@ -45,10 +52,8 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
 
 
-binding.Prueba.setOnClickListener{
-    fetchCurrentUser()
-}
-
+        binding.setUserName.isEnabled=false
+        fetchCurrentUser()
         val status = resources.getStringArray(R.array.status_usuario)
         val adapter = ArrayAdapter(this, R.layout.list_item_status, status)
 
@@ -64,26 +69,12 @@ binding.Prueba.setOnClickListener{
         }
 
         editarUsuario()
-        val storageRef =
-            FirebaseStorage.getInstance().reference.child("images/W5oi5pRKXffbbAyaLzi5THFhPDL2")
-        val localFile = java.io.File.createTempFile("tempImage", "jpg")
-
-        storageRef.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            binding.imageView5.setImageBitmap(bitmap)
-
-        }.addOnFailureListener {
-            Toast.makeText(this@SettingsActivity, "NO JALO el colocamiento de imagen", Toast.LENGTH_SHORT).show()
-
-        }
-
     }
 
     private fun editarUsuario(){
-
         val username_u = findViewById<EditText>(R.id.set_user_name)
         val btnSend = findViewById<Button>(R.id.save_user)
-
+        storageReference= FirebaseStorage.getInstance().getReference("users")
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -92,19 +83,27 @@ binding.Prueba.setOnClickListener{
                 currentUser = snapshot.getValue(users::class.java)
 
 
+                val storageRef =
+                    FirebaseStorage.getInstance().reference.child("images/${UserUid}")
+                val localFile = java.io.File.createTempFile("tempImage", "jpg")
+
+
+
 
                 btnSend.setOnClickListener {
-
                     val username = username_u.text.toString().trim()
+                    val cambiarEstado=true
                     autoCompleteTextView_status.text.toString()
 
                     val hashMap : HashMap<String, Any> = HashMap()
                     hashMap.put("username",username)
                     hashMap.put("status",autoCompleteTextView_status.text.toString())
-
+                    hashMap.put("logro_cambiarEstado",cambiarEstado)
                     ContactDAO.update(currentUser?.uid.toString(),hashMap)?.addOnSuccessListener {
 
+
                         finish()
+
 
                     }
 
@@ -161,7 +160,11 @@ binding.Prueba.setOnClickListener{
         if(requestCode==100&& resultCode==RESULT_OK){
 
             ImageUri=data?.data!!
-            binding.imageView5.setImageURI(ImageUri)
+
+            uploadImage()
+
+
+
 
         }
 
@@ -176,14 +179,26 @@ binding.Prueba.setOnClickListener{
                 SettingsActivity.currentUser = snapshot.getValue(users::class.java)
                 Log.d("LatestMessages", "Current user ${LatestMessagesA.currentUser?.username}")
 
-                val users = SettingsActivity.currentUser?.encrypted
 
-                if (users.toString().equals("activated")) {
-                    //send message to firebase
-                }else{
-                    Log.d("AHUEVO","JALO")
+                UserUid= SettingsActivity.currentUser?.uid.toString()
+                UserNick= SettingsActivity.currentUser?.username.toString()
+
+                Log.d("AHUEVO",UserUid)
+                val storageRef =
+                    FirebaseStorage.getInstance().reference.child("images/${UserUid}")
+                val localFile = java.io.File.createTempFile("tempImage", "jpg")
+
+                storageRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    binding.imageView5.setImageBitmap(bitmap)
+                    binding.setUserName.setText(UserNick)
+                    binding.setUserName.isEnabled=true
+
+                }.addOnFailureListener {
+                    Toast.makeText(this@SettingsActivity, "NO JALO el colocamiento de imagen", Toast.LENGTH_SHORT).show()
 
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -193,7 +208,36 @@ binding.Prueba.setOnClickListener{
         }
         )
     }
+    private fun uploadImage() {
 
+
+        val progressDialog= ProgressDialog(this)
+        progressDialog.setMessage("uploading File ...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+
+        val formatter= SimpleDateFormat("yyyy_MM_dd_HH_mm", Locale.getDefault())
+        val now= Date()
+        val fileName=UserUid
+        val storageReference=FirebaseStorage.getInstance().getReference("images/$fileName")
+
+
+
+        storageReference.putFile(ImageUri).
+        addOnSuccessListener {
+            binding.imageView5.setImageURI(null)
+            Toast.makeText(this@SettingsActivity,"Successfuly",Toast.LENGTH_SHORT).show()
+            finish()
+            if(progressDialog.isShowing)progressDialog.dismiss()
+        }.addOnFailureListener{
+
+            if(progressDialog.isShowing) progressDialog.dismiss()
+            Toast.makeText(this@SettingsActivity,"NO JALO",Toast.LENGTH_SHORT).show()
+
+        }
+
+    }
 
 
 }

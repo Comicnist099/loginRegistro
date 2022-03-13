@@ -22,4 +22,12 @@
     <style name="Theme.LoginRegistro.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.LoginRegistro.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="roundimageview" parent="">
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
 </resources>

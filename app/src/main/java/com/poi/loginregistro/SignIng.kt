@@ -3,6 +3,7 @@ package com.poi.loginregistro
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -137,11 +138,14 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
         val storageReference=FirebaseStorage.getInstance().getReference("images/$fileName")
 
 
+
         storageReference.putFile(ImageUri).
                 addOnSuccessListener {
                     binding.Imgid.setImageURI(null)
+
                     Toast.makeText(this@SignIng,"Successfuly",Toast.LENGTH_SHORT).show()
                     if(progressDialog.isShowing)progressDialog.dismiss()
+
                 }.addOnFailureListener{
 
                     if(progressDialog.isShowing) progressDialog.dismiss()
@@ -150,10 +154,6 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 
         }
-
-
-
-
 
     }
 
@@ -172,6 +172,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
         if(requestCode==100&& resultCode==RESULT_OK){
 
             ImageUri=data?.data!!
+
             binding.Imgid.setImageURI(ImageUri)
 
         }

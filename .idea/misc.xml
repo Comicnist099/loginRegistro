@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/bordes.xml" value="0.1815" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/circle.xml" value="0.143" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/circles.xml" value="0.143" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/img.xml" value="0.143" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_latest_messages.xml" value="0.1" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_main.xml" value="0.2517482517482518" />
@@ -12,6 +15,7 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/bordes.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_from_row.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_to_row.xml" value="0.25" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/circle.xml" value="0.10092592592592593" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/contact_select_recycler.xml" value="0.24242424242424243" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_assigned_tasks.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_completed_task.xml" value="0.225" />
@@ -21,7 +25,7 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/group_to_row.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/list_item.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/list_item_status.xml" value="0.225" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/lista_salon.xml" value="0.225" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/lista_salon.xml" value="0.1" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/message_from_group.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/message_group.xml" value="0.33" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/tarea_recycler.xml" value="0.33" />
