@@ -240,4 +240,5 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
 
+
 }

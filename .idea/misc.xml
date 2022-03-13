@@ -7,11 +7,17 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/circle.xml" value="0.143" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/circles.xml" value="0.143" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/img.xml" value="0.143" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_chat_group.xml" value="0.225" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_chat_log2.xml" value="0.17239583333333333" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_create_group.xml" value="0.225" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_deliver_task.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_latest_messages.xml" value="0.1" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_main.xml" value="0.2517482517482518" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_new_message.xml" value="0.1" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_send_email.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_settings.xml" value="0.25" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/agregar_archivo.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/bordes.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_from_row.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_to_row.xml" value="0.25" />
@@ -27,10 +33,10 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/list_item_status.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/lista_salon.xml" value="0.1" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/message_from_group.xml" value="0.225" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/message_group.xml" value="0.33" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/message_group.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/tarea_recycler.xml" value="0.33" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/team_names_select.xml" value="0.17291666666666666" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/user_row_new_message.xml" value="0.1171875" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/user_row_new_message.xml" value="0.2" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/menu/nav_menu.xml" value="0.225" />
       </map>
     </option>

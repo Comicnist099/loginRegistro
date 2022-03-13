@@ -1,13 +1,17 @@
 package com.poi.loginregistro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.system.Os.link
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import com.poi.loginregistro.Modelos.users
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -16,7 +20,12 @@ import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.fragment_mensajes_priv.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
+
+lateinit var ImageUri: Uri
 class NewMessageActivity : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
@@ -78,7 +87,24 @@ class UserItem(val user: users?): Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
         if (user != null) {
+
             viewHolder.itemView.username_row.text = user.username
+            val fileName=user.uid
+            val localFile = java.io.File.createTempFile("tempImage", "jpg")
+///////////////////////IMAGENES CARGAR
+            val storageReference= FirebaseStorage.getInstance().getReference("images/$fileName")
+            storageReference.getFile(localFile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                viewHolder.itemView.imageView3.setImageBitmap(bitmap)
+
+            }.addOnFailureListener{
+
+            }
+
+
+
+
+
         }
         viewHolder.itemView.status_user.text = user!!.status
     }

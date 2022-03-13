@@ -20,7 +20,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="71dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/up"
+        android:src="@drawable/penguin"
         app:civ_border_color="@color/black" />
 
     <EditText

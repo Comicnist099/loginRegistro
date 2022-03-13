@@ -1,12 +1,15 @@
 package com.poi.loginregistro
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.poi.loginregistro.Modelos.*
 import com.poi.loginregistro.group_fragment.Companion.GROUP_KEY
 import com.poi.loginregistro.helpers.General
@@ -19,6 +22,8 @@ import kotlinx.android.synthetic.main.message_group.view.*
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+lateinit var UserUid:String
+lateinit var UserNick:String
 
 class GroupLogActivity : AppCompatActivity() {
 
@@ -59,13 +64,27 @@ class GroupLogActivity : AppCompatActivity() {
         }
 
     }
+    private fun prueba() {
 
+        val ref = FirebaseDatabase.getInstance().getReference("/users/${UserUid}")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+                UserNick= SettingsActivity.currentUser?.username.toString()
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        )
+    }
     private fun listenFromMessages(){
 
         val bundle = intent.extras
         teamUid = bundle!!.getString("teamUid").toString()
 
-        val uid = FirebaseAuth.getInstance().uid
+
         val career = teamUid
         val ref = FirebaseDatabase.getInstance().getReference("/grupo-messages/$career")
 
@@ -73,9 +92,12 @@ class GroupLogActivity : AppCompatActivity() {
 
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
-                currentUser = snapshot.getValue(users::class.java)
+                SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+
+
                 Log.d("LatestMessages", "Current user ${currentUser?.username}")
                 val chatGroup = snapshot.getValue(ChatGroup::class.java)
+
                 if (chatGroup != null) {
 
                     Log.d(GroupLogActivity.TAG, chatGroup.text)
@@ -87,7 +109,11 @@ class GroupLogActivity : AppCompatActivity() {
                         adapter.add(GroupToItem(chatGroup.text))
                     }
                     else {
-                        adapter.add(GroupFromItem(chatGroup.text, chatGroup.username))
+                        UserUid=chatGroup.fromId
+
+
+                            adapter.add(GroupFromItem(chatGroup.text, chatGroup.username))
+
                     }
 
                 }
@@ -147,7 +173,7 @@ class GroupLogActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 SettingsActivity.currentUser = snapshot.getValue(users::class.java)
                 Log.d("LatestMessages", "Current user ${LatestMessagesA.currentUser?.username}")
-
+               val username= SettingsActivity.currentUser?.username.toString()
                 val users = SettingsActivity.currentUser?.encrypted
 
                 if (users.toString().equals("activated")){
@@ -202,7 +228,8 @@ class GroupLogActivity : AppCompatActivity() {
                     val uid = FirebaseAuth.getInstance().uid
                     val career = teamUid
                     val career2 = intent.getParcelableExtra<Carrera>(GROUP_KEY)
-                    val username = General.UserInstance.getUserInstance()?.username.toString()
+
+                        //General.UserInstance.getUserInstance()?.username.toString()
                     val careerUid = career2?.uid
                     //val ref = FirebaseDatabase.getInstance().getReference("/grupo-messages/$uid/$careerUid")
 
