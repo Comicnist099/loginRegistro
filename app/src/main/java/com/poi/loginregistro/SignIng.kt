@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +28,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
     lateinit var binding: ActivityMainBinding
     lateinit var ImageUri:Uri
     lateinit var logros: Logros
-
+    lateinit var mediaPlayer: MediaPlayer
     var uid=""
     private val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference("user")
@@ -41,7 +42,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mediaPlayer=MediaPlayer.create(this,R.raw.notify)
 
         val carrera = resources.getStringArray(R.array.elige_carrera)
         val adapter = ArrayAdapter(this, R.layout.list_item, carrera)
@@ -88,6 +89,8 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
                 return@setOnClickListener
             }
             else {
+
+
                 saveUsertoDatabase(users("", username, email, contra, status, encrypted, selected, tasks, "" ,logro_createUsuario,
                     logro_createGrupo,logro_login,logro_cambiaEstado))
 
@@ -96,6 +99,8 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
             Log.d("SignIng", "Email is: " + email)
             Log.d("SignIng", "Password:  $contra")
+
+            mediaPlayer.start()
             val linearLayout = LinearLayout(applicationContext)
 
             // populate layout with your image and text
@@ -103,7 +108,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
             val imageView = ImageView(applicationContext)
 
             // adding image to be shown
-            imageView.setImageResource(R.drawable.banner2)
+            imageView.setImageResource(R.drawable.logro_nuevouser)
 
             // adding image to linearlayout
             linearLayout.addView(imageView)

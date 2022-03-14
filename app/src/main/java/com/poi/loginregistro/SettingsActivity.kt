@@ -4,11 +4,13 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
@@ -37,17 +39,20 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     lateinit var ImageUri: Uri
     lateinit var UserUid:String
     lateinit var UserNick:String
+    lateinit var mediaPlayer:MediaPlayer
+
     private val database = FirebaseDatabase.getInstance()
     private lateinit var storageReference : StorageReference
     private lateinit var binding: ActivitySettingsBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_settings)
 
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mediaPlayer=MediaPlayer.create(this,R.raw.notify)
 
 
 
@@ -94,19 +99,45 @@ class SettingsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                     val username = username_u.text.toString().trim()
                     val cambiarEstado=true
                     autoCompleteTextView_status.text.toString()
+                    val estado= autoCompleteTextView_status.text.toString()
 
                     val hashMap : HashMap<String, Any> = HashMap()
                     hashMap.put("username",username)
+
                     hashMap.put("status",autoCompleteTextView_status.text.toString())
-                    hashMap.put("logro_cambiarEstado",cambiarEstado)
+                        if (currentUser?.Logro_cambiaEstado == false) {
+                            hashMap.put("logro_cambiaEstado", cambiarEstado)
+                            mediaPlayer.start()
+                            val linearLayout = LinearLayout(applicationContext)
+
+                                // populate layout with your image and text
+                                // or whatever you want to put in here
+                                val imageView = ImageView(applicationContext)
+
+                                // adding image to be shown
+                                imageView.setImageResource(R.drawable.logro_cambioestado)
+
+                                // adding image to linearlayout
+                                linearLayout.addView(imageView)
+                                val toast = Toast(applicationContext)
+
+                                // showing toast on bottom
+                                toast.setGravity(Gravity.BOTTOM, 0, 100)
+                                toast.duration = Toast.LENGTH_LONG
+
+                                // setting view of toast to linear layout
+                                toast.setView(linearLayout)
+
+                                toast.show()
+                            currentUser?.Logro_cambiaEstado=true
+
+
+                            }
                     ContactDAO.update(currentUser?.uid.toString(),hashMap)?.addOnSuccessListener {
 
-
-                        finish()
-
-
-                    }
-
+                        val intent =
+                            Intent(this@SettingsActivity, LatestMessagesA::class.java)
+                        startActivity(intent)                }
                 }
 
                 encryptPasswordSwitch.setOnClickListener{
