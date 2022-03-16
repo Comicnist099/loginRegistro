@@ -101,10 +101,6 @@ class UserItem(val user: users?): Item<GroupieViewHolder>(){
 
             }
 
-
-
-
-
         }
         viewHolder.itemView.status_user.text = user!!.status
     }

@@ -9,9 +9,10 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/drawable/img.xml" value="0.143" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_chat_group.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_chat_log2.xml" value="0.17239583333333333" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_crear_tasks.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_create_group.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_deliver_task.xml" value="0.17239583333333333" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_latest_messages.xml" value="0.1" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_latest_messages.xml" value="0.22" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_main.xml" value="0.2517482517482518" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_new_message.xml" value="0.1" />
@@ -19,14 +20,14 @@
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/agregar_archivo.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/bordes.xml" value="0.17291666666666666" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_from_row.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_from_row.xml" value="0.5" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/chat_to_row.xml" value="0.25" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/circle.xml" value="0.10092592592592593" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/contact_select_recycler.xml" value="0.24242424242424243" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/contact_select_recycler.xml" value="0.22357723577235772" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_assigned_tasks.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_completed_task.xml" value="0.225" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_group_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_mensajes_priv.xml" value="0.22" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_group_fragment.xml" value="0.18" />
+        <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_mensajes_priv.xml" value="0.33" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/fragment_tasks.xml" value="0.1" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/group_to_row.xml" value="0.225" />
         <entry key="..\:/Users/book/Downloads/LoginRegistro/loginRegistro/app/src/main/res/layout/list_item.xml" value="0.225" />

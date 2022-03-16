@@ -30,14 +30,14 @@
         android:orientation="horizontal">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageViewsun"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/ImagenPerfilGrupoSelect"
             android:layout_width="60dp"
             android:layout_height="60dp"
 
-            android:src="@drawable/multimedios"
+            android:src="@drawable/penguin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_height="26dp"
 
             android:layout_marginStart="10dp"
-            android:text="Username"
+            android:text="Cargando..."
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -56,23 +56,6 @@
             app:layout_constraintStart_toEndOf="@+id/imageViewsun"
             app:layout_constraintTop_toTopOf="@+id/imageViewsun"
             app:layout_constraintVertical_bias="0.157" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="100dp"
-            android:layout_height="19dp"
-            android:layout_below="@+id/contactName"
-            android:layout_marginStart="-100dp"
-            android:drawableStart="@drawable/clock"
-            android:text="Username"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="8sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/contactName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.756" />
 
 
     </LinearLayout>

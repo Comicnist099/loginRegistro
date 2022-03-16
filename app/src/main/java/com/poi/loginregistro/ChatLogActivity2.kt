@@ -3,6 +3,7 @@ package com.poi.loginregistro
 import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,8 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
+import android.widget.Button
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -23,10 +26,12 @@ import kotlinx.android.synthetic.main.activity_chat_log2.*
 import kotlinx.android.synthetic.main.agregar_archivo.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.android.synthetic.main.user_row_new_message.view.*
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+lateinit var toId:String
 
 class ChatLogActivity2 : AppCompatActivity() {
 
@@ -35,7 +40,6 @@ class ChatLogActivity2 : AppCompatActivity() {
         var currentUser: users? = null
         val USER_KEY = "USER_KEY"
     }
-
     val adapter = GroupAdapter<GroupieViewHolder>()
     private var uid :String=""
     private var name : String= ""
@@ -45,6 +49,11 @@ class ChatLogActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_chat_log2)
 
         recyclerViewChatLog.adapter = adapter
+
+
+
+
+
 
 
         //val username = intent.getStringExtra(NewMessageActivity.USER_KEY)
@@ -70,6 +79,7 @@ class ChatLogActivity2 : AppCompatActivity() {
         val user = intent.getParcelableExtra<users>(NewMessageActivity.USER_KEY)
         val toId = user?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
+        val idFoto=toId.toString()
 
         ref.addChildEventListener(object: ChildEventListener{
 
@@ -80,7 +90,15 @@ class ChatLogActivity2 : AppCompatActivity() {
 
                 if (chatMessage != null) {
 
+
+
+
+
+
+
                     Log.d(TAG, chatMessage.text)
+
+
 
                     if (chatMessage.fromId == FirebaseAuth.getInstance().uid){
 
@@ -88,7 +106,7 @@ class ChatLogActivity2 : AppCompatActivity() {
 
                     }
                     else {
-                        adapter.add(ChatFromItem(chatMessage.text))
+                        adapter.add(ChatFromItem(chatMessage.text,idFoto))
                     }
 
                 }
@@ -149,6 +167,7 @@ class ChatLogActivity2 : AppCompatActivity() {
                     val reference = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
 
                    val toReference = FirebaseDatabase.getInstance().getReference("/user-messages/$toId/$fromId").push()
+
 
                     val chatMessage = ChatMessage(reference.key!!, mensajeCifrado, fromId, toId.toString(), "", "", "", ServerValue.TIMESTAMP )
 
@@ -285,9 +304,21 @@ class ChatLogActivity2 : AppCompatActivity() {
     }*/
 }
 
-class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
+class ChatFromItem(val text: String,val idfoto:String): Item<GroupieViewHolder>(){
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+
+
+            val localFile = java.io.File.createTempFile("tempImage", "jpg")
+            val storageReference =
+                FirebaseStorage.getInstance().getReference("images/$idfoto")
+            storageReference.getFile(localFile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                viewHolder.itemView.PerfilImageChat.setImageBitmap(bitmap)
+
+            }.addOnFailureListener {
+
+            }
 
         viewHolder.itemView.textView_from.text = text
 
@@ -299,6 +330,11 @@ class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
     }
 
 }
+
+
+
+
+
 
 class ChatToItem(val text: String): Item<GroupieViewHolder>(){
 

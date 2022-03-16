@@ -22,7 +22,7 @@
         android:layout_width="178dp"
         android:layout_height="125dp"
         android:layout_marginBottom="412dp"
-        android:background="@drawable/nlogro_bienvenido"
+        android:src="@drawable/nlogro_bienvenido"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.12"
@@ -35,7 +35,7 @@
         android:layout_width="178dp"
         android:layout_height="125dp"
         android:layout_marginBottom="276dp"
-        android:background="@drawable/nlogro_cambioestado"
+        android:src="@drawable/nlogro_cambioestado"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.12"
@@ -56,13 +56,13 @@
 
     <ImageView
         android:id="@+id/logro_Esotilin"
-        android:layout_width="186dp"
-        android:layout_height="118dp"
+        android:layout_width="223dp"
+        android:layout_height="143dp"
         android:layout_marginBottom="144dp"
-        android:background="@drawable/nlogro_esotilin"
+        android:src="@drawable/nlogro_esotilin"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.0"
 
         app:layout_constraintStart_toStartOf="@+id/textView2"
         tools:ignore="MissingConstraints" />
@@ -73,7 +73,7 @@
         android:layout_width="178dp"
         android:layout_height="125dp"
         android:layout_marginBottom="412dp"
-        android:background="@drawable/nlogro_nuevo_user"
+        android:src="@drawable/nlogro_nuevo_user"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.884"
@@ -86,7 +86,7 @@
         android:layout_width="178dp"
         android:layout_height="125dp"
         android:layout_marginBottom="276dp"
-        android:background="@drawable/nlogro_creargrupo"
+        android:src="@drawable/nlogro_creargrupo"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.884"
@@ -96,14 +96,14 @@
 
     <ImageView
         android:id="@+id/logro_tareaCompleta"
-        android:layout_width="178dp"
-        android:layout_height="125dp"
+        android:layout_width="212dp"
+        android:layout_height="145dp"
         android:layout_marginBottom="144dp"
-        android:background="@drawable/nlogro_tareaentregada"
+
+        android:src="@drawable/nlogro_tareaentregada"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.884"
-
+        app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         tools:ignore="MissingConstraints" />
 

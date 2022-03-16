@@ -1,5 +1,6 @@
 package com.poi.loginregistro.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.poi.loginregistro.Modelos.contacto
 import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.R
 import kotlinx.android.synthetic.main.contact_select_recycler.view.*
+import kotlinx.android.synthetic.main.user_row_new_message.view.*
 import java.nio.file.Paths
 
 class SelectMembersAdapter(val contacts : List<contacto>) : RecyclerView.Adapter<SelectMembersAdapter.MembersViewHolder>() {
@@ -47,7 +49,20 @@ class SelectMembersAdapter(val contacts : List<contacto>) : RecyclerView.Adapter
 
         }
 
-        holder.view.contactName.text= contact.username
+
+        val fileName=contact.uid
+        val localFile = java.io.File.createTempFile("tempImage", "jpg")
+///////////////////////IMAGENES CARGAR
+        val storageReference= FirebaseStorage.getInstance().getReference("images/$fileName")
+        storageReference.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            holder.view.contactName.text= contact.username
+
+            holder.itemView.ImagenPerfilGrupoSelect.setImageBitmap(bitmap)
+
+        }.addOnFailureListener{
+
+        }
 
 
 
