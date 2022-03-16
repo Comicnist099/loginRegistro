@@ -17,6 +17,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_chat_group.*
+import kotlinx.android.synthetic.main.contact_select_recycler.view.*
 import kotlinx.android.synthetic.main.group_to_row.view.*
 import kotlinx.android.synthetic.main.message_group.view.*
 import javax.crypto.Cipher
@@ -69,8 +70,11 @@ class GroupLogActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("/users/${UserUid}")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
+
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+
                 UserNick= SettingsActivity.currentUser?.username.toString()
             }
             override fun onCancelled(error: DatabaseError) {
@@ -96,6 +100,7 @@ class GroupLogActivity : AppCompatActivity() {
 
 
                 Log.d("LatestMessages", "Current user ${currentUser?.username}")
+                val idUser=currentUser?.uid.toString()
                 val chatGroup = snapshot.getValue(ChatGroup::class.java)
 
                 if (chatGroup != null) {
@@ -112,7 +117,7 @@ class GroupLogActivity : AppCompatActivity() {
                         UserUid=chatGroup.fromId
 
 
-                            adapter.add(GroupFromItem(chatGroup.text, chatGroup.username))
+                            adapter.add(GroupFromItem(chatGroup.text, chatGroup.username,UserUid))
 
                     }
 
@@ -327,10 +332,20 @@ class GroupLogActivity : AppCompatActivity() {
 
 }
 
-class GroupFromItem(val text: String, val username: String): Item<GroupieViewHolder>(){
+class GroupFromItem(val text: String, val username: String,val uid:String): Item<GroupieViewHolder>(){
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+        val fileName=uid
+        val localFile = java.io.File.createTempFile("tempImage", "jpg")
+///////////////////////IMAGENES CARGAR
+        val storageReference= FirebaseStorage.getInstance().getReference("images/$fileName")
+        storageReference.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            viewHolder.itemView.ivPerfil.setImageBitmap(bitmap)
 
+        }.addOnFailureListener{
+
+        }
         viewHolder.itemView.tv_name.text = username
         viewHolder.itemView.tv_message.text = text
     }

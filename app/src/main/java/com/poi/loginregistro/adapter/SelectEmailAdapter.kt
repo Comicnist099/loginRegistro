@@ -1,5 +1,6 @@
 package com.poi.loginregistro.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,19 @@ class SelectEmailAdapter(val contacts : List<contacto>) : RecyclerView.Adapter<S
                     holder.view.circleSelected.setBackgroundResource(com.poi.loginregistro.R.drawable.ic_circle_state_active)
                 }
             }
-            holder.view.contactName.text= contact.username
+
+            val fileName=contact.uid
+            val localFile = java.io.File.createTempFile("tempImage", "jpg")
+///////////////////////IMAGENES CARGAR
+            val storageReference= FirebaseStorage.getInstance().getReference("images/$fileName")
+            storageReference.getFile(localFile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                holder.view.contactName.text= contact.username
+                holder.itemView.ImagenPerfilGrupoSelect.setImageBitmap(bitmap)
+
+            }.addOnFailureListener{
+
+            }
 
 
         }
