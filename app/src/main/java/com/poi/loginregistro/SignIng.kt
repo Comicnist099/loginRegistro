@@ -3,8 +3,6 @@ package com.poi.loginregistro
 
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +20,7 @@ import com.poi.loginregistro.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
     private val File = 1
@@ -46,13 +45,13 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
         val carrera = resources.getStringArray(R.array.elige_carrera)
         val adapter = ArrayAdapter(this, R.layout.list_item, carrera)
+        val path = Uri.parse("android.resource://com.poi.loginregistro/" + R.drawable.avatar)
+        ImageUri=path
 
 
         btnCargarImg.setOnClickListener {
         selectImage()
-
         //fileUpload()
-
         }
 
         //setContentView(R.layout.activity_main)
@@ -63,10 +62,6 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
         val userText = findViewById<EditText>(R.id.username_text)
         val password = findViewById<EditText>(R.id.contr_text)
         val button = findViewById<Button>(R.id.btnRegister)
-
-
-
-
         button.setOnClickListener{
 
             val email = correoText.text.toString().trim()
@@ -80,10 +75,12 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
             var logro_createGrupo =false
             var logro_login  = false
             var logro_cambiaEstado  = false
+            var logro_esotilin =false
+            var logro_tarea =false
 
 
 
-            if(username.isEmpty() || email.isEmpty() || contra.isEmpty()) {
+            if(username.isEmpty() || email.isEmpty() || contra.isEmpty() ) {
 
                 Toast.makeText(this, "Porfavor no deje campos vacios", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -92,7 +89,7 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 
                 saveUsertoDatabase(users("", username, email, contra, status, encrypted, selected, tasks, "" ,logro_createUsuario,
-                    logro_createGrupo,logro_login,logro_cambiaEstado))
+                    logro_createGrupo,logro_login,logro_cambiaEstado,logro_esotilin,logro_tarea))
 
 
             }
@@ -144,22 +141,20 @@ class SignIng: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 
 
-        storageReference.putFile(ImageUri).
-                addOnSuccessListener {
-                    binding.Imgid.setImageURI(null)
+            storageReference.putFile(ImageUri).addOnSuccessListener {
+                binding.Imgid.setImageURI(null)
 
-                    Toast.makeText(this@SignIng,"Successfuly",Toast.LENGTH_SHORT).show()
-                    if(progressDialog.isShowing)progressDialog.dismiss()
+                Toast.makeText(this@SignIng, "Successfuly", Toast.LENGTH_SHORT).show()
+                if (progressDialog.isShowing) progressDialog.dismiss()
 
-                }.addOnFailureListener{
+            }.addOnFailureListener {
 
-                    if(progressDialog.isShowing) progressDialog.dismiss()
-            Toast.makeText(this@SignIng,"NO JALO",Toast.LENGTH_SHORT).show()
+                if (progressDialog.isShowing) progressDialog.dismiss()
+                Toast.makeText(this@SignIng, "NO JALO", Toast.LENGTH_SHORT).show()
 
 
 
         }
-
     }
 
     private fun selectImage() {

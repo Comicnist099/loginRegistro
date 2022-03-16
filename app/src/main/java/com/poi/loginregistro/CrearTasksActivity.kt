@@ -3,21 +3,23 @@ package com.poi.loginregistro
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.ImageButton
+import android.widget.*
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.basgeekball.awesomevalidation.utility.RegexTemplate
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.poi.loginregistro.Modelos.Tareitas
 import com.poi.loginregistro.Modelos.Team
 import com.poi.loginregistro.Modelos.contacto
+import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.adapter.SpinerAdapter
+import com.poi.loginregistro.dao.ContactDAO
 import com.poi.loginregistro.dao.TareitasDAO
 import com.poi.loginregistro.databinding.ActivityCrearTasksBinding
 import com.poi.loginregistro.databinding.ActivitySettingsBinding
@@ -30,6 +32,8 @@ class CrearTasksActivity : AppCompatActivity(), AdapterView.OnItemClickListener 
     private val databaseReference : DatabaseReference = FirebaseDatabase.getInstance().reference
     private var selectedTeam : String =""
     private var teamsList = mutableListOf<SpinerAdapter>()
+    lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,7 @@ class CrearTasksActivity : AppCompatActivity(), AdapterView.OnItemClickListener 
 
         supportActionBar?.title = "Crear Tarea"
         initTeams(this)
+        mediaPlayer=MediaPlayer.create(this,R.raw.notify)
 
 
         val validator : AwesomeValidation = AwesomeValidation(ValidationStyle.BASIC)
@@ -60,10 +65,10 @@ class CrearTasksActivity : AppCompatActivity(), AdapterView.OnItemClickListener 
                 val assignment = Tareitas(selectedTeam,taskTitle.text.toString(),
                     ServerValue.TIMESTAMP,taskDescription.text.toString(),randomUUIDString)
                 TareitasDAO.add(assignment,selectedTeam).addOnSuccessListener {
-
                     val intent= Intent(this,LatestMessagesA::class.java)
                     startActivity(intent)
                     finish()
+
                 }
 
             }
@@ -121,5 +126,6 @@ class CrearTasksActivity : AppCompatActivity(), AdapterView.OnItemClickListener 
         selectedTeam=teamsList[position].key
 
     }
+
 
 }

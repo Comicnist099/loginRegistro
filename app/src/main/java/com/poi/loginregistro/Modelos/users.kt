@@ -19,7 +19,10 @@ data class users(
     var Logro_createUsuario : Boolean = false,
     var Logro_createGrupo : Boolean = false,
     var Logro_login : Boolean = false,
-    var Logro_cambiaEstado : Boolean = false
+    var Logro_cambiaEstado : Boolean = false,
+    var Logro_esoTilin : Boolean = false,
+    var Logro_Tarea : Boolean = false
+
 ): Parcelable{
    // constructor():this("","", "", "", "", "", false, "", "")
 }

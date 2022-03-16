@@ -1,16 +1,22 @@
 package com.poi.loginregistro
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.basgeekball.awesomevalidation.utility.RegexTemplate
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.poi.loginregistro.Modelos.*
 import com.poi.loginregistro.adapter.SelectMembersAdapter
+import com.poi.loginregistro.dao.ContactDAO
 import com.poi.loginregistro.dao.TeamsDAO
 import com.poi.loginregistro.helpers.General
 import kotlinx.android.synthetic.main.activity_create_group.*
@@ -21,6 +27,7 @@ class CreateGroupActivity : AppCompatActivity() {
     var contactList : ArrayList<contacto>? = ArrayList();
     val databaseReference : DatabaseReference = FirebaseDatabase.getInstance().reference
 
+    lateinit var mediaPlayer: MediaPlayer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +39,7 @@ class CreateGroupActivity : AppCompatActivity() {
         var layoutManager =  LinearLayoutManager(this)
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL)
         select_members_recycler.layoutManager = layoutManager
+        mediaPlayer=MediaPlayer.create(this,R.raw.notify)
 
         fetchUsers()
 
@@ -61,7 +69,7 @@ class CreateGroupActivity : AppCompatActivity() {
                     val group= Team(groupNameView.text.toString(),contactsSelected)
 
                     TeamsDAO.add(key,group).addOnSuccessListener {
-
+                        Logro()
                         val intent = Intent(this,GroupLogActivity::class.java)
                         intent.putExtra("teamUid",group.name)
                         startActivity(intent)
@@ -133,7 +141,50 @@ class CreateGroupActivity : AppCompatActivity() {
             }
         })*/
     }
+    private fun Logro() {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        var cambiarEstado=false
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+                val hashMap : java.util.HashMap<String, Any> = java.util.HashMap()
 
+                if(SettingsActivity.currentUser?.Logro_createGrupo ==false){
+                    hashMap.put("logro_createGrupo",true)
+                    cambiarEstado=true
+                    ContactDAO.update(SettingsActivity.currentUser?.uid.toString(),hashMap)?.addOnSuccessListener {
+                    }
+                    mediaPlayer.start()
+                    val linearLayout = LinearLayout(applicationContext)
+
+                    // populate layout with your image and text
+                    // or whatever you want to put in here
+                    val imageView = ImageView(applicationContext)
+
+                    // adding image to be shown
+                    imageView.setImageResource(R.drawable.logro_creargrupo)
+
+                    // adding image to linearlayout
+                    linearLayout.addView(imageView)
+                    val toast = Toast(applicationContext)
+
+                    // showing toast on bottom
+                    toast.setGravity(Gravity.BOTTOM, 0, 100)
+                    toast.duration = Toast.LENGTH_LONG
+
+                    // setting view of toast to linear layout
+                    toast.setView(linearLayout)
+                    toast.show()
+                }
+
+
+            } override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+    }
 
 
 }

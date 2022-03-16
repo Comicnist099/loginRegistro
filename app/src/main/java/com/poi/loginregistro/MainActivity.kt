@@ -1,6 +1,7 @@
 package com.poi.loginregistro
 
 import android.content.Intent
+import android.media.MediaPlayer
 
 import android.os.Bundle
 
@@ -13,13 +14,18 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.poi.loginregistro.Modelos.users
+import com.poi.loginregistro.dao.ContactDAO
 
 import com.poi.loginregistro.helpers.General
+import kotlinx.android.synthetic.main.activity_settings.*
 import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var mediaPlayer: MediaPlayer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-
+        var  Logro_login=false
         supportActionBar?.title = "Multimedios Chat"
 
         val correoText = findViewById<EditText>(R.id.correo_text2)
@@ -39,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val databaseReference : DatabaseReference = FirebaseDatabase.getInstance().reference
         val ImagenPerfil = findViewById<ImageView>(R.id.Imgid)
         val BtnCargar = findViewById<Button>(R.id.btnCargarImg)
-
+        mediaPlayer=MediaPlayer.create(this,R.raw.notify)
 
 
         account.setOnClickListener {
@@ -82,30 +88,8 @@ class MainActivity : AppCompatActivity() {
                         })
 
                     Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
-                    val linearLayout = LinearLayout(applicationContext)
+                    Logro()
 
-                    // populate layout with your image and text
-                    // or whatever you want to put in here
-                    val imageView = ImageView(applicationContext)
-
-                    // adding image to be shown
-                    imageView.setImageResource(R.drawable.logro_bienvenido)
-
-                    // adding image to linearlayout
-                    linearLayout.addView(imageView)
-                    val toast = Toast(applicationContext)
-
-                    // showing toast on bottom
-                    toast.setGravity(Gravity.BOTTOM, 0, 100)
-                    toast.duration = Toast.LENGTH_LONG
-
-                    // setting view of toast to linear layout
-                    toast.setView(linearLayout)
-
-                    val intent = Intent(this, LatestMessagesA::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    toast.show()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT)
@@ -119,7 +103,60 @@ class MainActivity : AppCompatActivity() {
 
     }
 /////////////////// FOTO
+private fun Logro() {
+    val uid = FirebaseAuth.getInstance().uid
+    val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+    var cambiarEstado=false
+    ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            SettingsActivity.currentUser = snapshot.getValue(users::class.java)
+            val hashMap : HashMap<String, Any> = HashMap()
+
+            if(SettingsActivity.currentUser?.Logro_login ==false){
+                hashMap.put("logro_login",true)
+                cambiarEstado=true
+                ContactDAO.update(SettingsActivity.currentUser?.uid.toString(),hashMap)?.addOnSuccessListener {
+              }
+                mediaPlayer.start()
+                val linearLayout = LinearLayout(applicationContext)
+
+                // populate layout with your image and text
+                // or whatever you want to put in here
+                val imageView = ImageView(applicationContext)
+
+                // adding image to be shown
+                imageView.setImageResource(R.drawable.logro_bienvenido)
+
+                // adding image to linearlayout
+                linearLayout.addView(imageView)
+                val toast = Toast(applicationContext)
+
+                // showing toast on bottom
+                toast.setGravity(Gravity.BOTTOM, 0, 100)
+                toast.duration = Toast.LENGTH_LONG
+
+                // setting view of toast to linear layout
+                toast.setView(linearLayout)
 
 
+                toast.show()
+
+
+
+            }else{
+                cambiarEstado=false
+
+            }
+
+            val intent =
+                Intent(this@MainActivity, LatestMessagesA::class.java)
+            startActivity(intent)
+
+        } override fun onCancelled(error: DatabaseError) {
+
+        }
+    })
+
+}
 
 }

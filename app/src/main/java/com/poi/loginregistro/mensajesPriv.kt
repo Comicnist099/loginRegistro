@@ -1,12 +1,16 @@
 package com.poi.loginregistro
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.poi.loginregistro.GroupLogActivity.Companion.currentUser
 import com.poi.loginregistro.Modelos.users
 import com.poi.loginregistro.NewMessageActivity
+import com.poi.loginregistro.dao.ContactDAO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_mensajes_priv.*
@@ -40,6 +45,11 @@ class mensajesPriv : Fragment() {
     lateinit var Logro_CambioEstado2 :ImageView
     lateinit var Logro_NuevoUsuario2 :ImageView
     lateinit var Logro_NuevoGrupo2 :ImageView
+    lateinit var Logro_Tarea2 :ImageView
+    lateinit var Logro_Tilin2 :ImageView
+    lateinit var mediaPlayer: MediaPlayer
+
+
 
 
 
@@ -48,6 +58,8 @@ class mensajesPriv : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            mediaPlayer=MediaPlayer.create(context,R.raw.notify)
+
 
         }
     }
@@ -61,23 +73,59 @@ class mensajesPriv : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(users::class.java)
+                val hashMap : java.util.HashMap<String, Any> = java.util.HashMap()
 
+                if(currentUser?.Logro_esoTilin==true) {
+                    Logro_Tilin2.setImageResource(R.drawable.logro_esotilin)
 
+                }
+
+                if(currentUser?.Logro_Tarea==true&&currentUser?.Logro_login==true&&currentUser?.Logro_createUsuario==true&&currentUser?.Logro_createGrupo==true&&currentUser?.Logro_cambiaEstado==true) {
+                    if(currentUser?.Logro_esoTilin==false){
+
+                        val linearLayout = LinearLayout(context)
+
+                        // populate layout with your image and text
+                        // or whatever you want to put in here
+                        val imageView = ImageView(context)
+
+                        // adding image to be shown
+                        imageView.setImageResource(R.drawable.logro_esotilin)
+
+                        // adding image to linearlayout
+                        linearLayout.addView(imageView)
+                        val toast = Toast(context)
+
+                        // showing toast on bottom
+                        toast.setGravity(Gravity.BOTTOM, 0, 100)
+                        toast.duration = Toast.LENGTH_LONG
+
+                        // setting view of toast to linear layout
+                        toast.setView(linearLayout)
+                        toast.show()
+                        val intent = Intent(context,LatestMessagesA::class.java)
+                        startActivity(intent)
+                    }
+
+                    hashMap.put("logro_esoTilin",true)
+                    ContactDAO.update(SettingsActivity.currentUser?.uid.toString(),hashMap)?.addOnSuccessListener {
+                        }
+                }
+
+                if(currentUser?.Logro_Tarea==true){
+                    Logro_Tarea2.setImageResource(R.drawable.logro_tareaentregada)
+                }
 
                 if(currentUser?.Logro_login==true){
-                    val localFile = java.io.File.createTempFile("tempImage", "jpg")
                     Logro_bienvenido2.setImageResource(R.drawable.logro_bienvenido)
                 }
                 if(currentUser?.Logro_createUsuario==true){
-                    val localFile = java.io.File.createTempFile("tempImage", "jpg")
                     Logro_NuevoUsuario2.setImageResource(R.drawable.logro_nuevouser)
                 }
                 if(currentUser?.Logro_createGrupo==true){
-                    val localFile = java.io.File.createTempFile("tempImage", "jpg")
                     Logro_NuevoGrupo2.setImageResource(R.drawable.logro_creargrupo)
                 }
                 if(currentUser?.Logro_cambiaEstado==true){
-                    val localFile = java.io.File.createTempFile("tempImage", "jpg")
                     Logro_CambioEstado2.setImageResource(R.drawable.logro_cambioestado)
                 }
 
@@ -105,10 +153,15 @@ class mensajesPriv : Fragment() {
         var Logro_CambioEstado =vView.findViewById<ImageView>(R.id.logro_CambioEstado)
         var Logro_NuevoUsuario =vView.findViewById<ImageView>(R.id.logro_NuevoUsuario)
         var Logro_NuevoGrupo =vView.findViewById<ImageView>(R.id.logro_NuevoGrupo)
+        var Logro_Tarea =vView.findViewById<ImageView>(R.id.logro_tareaCompleta)
+        var Logro_Tilin =vView.findViewById<ImageView>(R.id.logro_Esotilin)
         Logro_NuevoGrupo2=Logro_NuevoGrupo
         Logro_CambioEstado2=Logro_CambioEstado
         Logro_NuevoUsuario2=Logro_NuevoUsuario
         Logro_bienvenido2=Logro_bienvenido
+        Logro_Tarea2=Logro_Tarea
+        Logro_Tilin2=Logro_Tilin
+
 
         var botonMensajeNuevo =vView.findViewById<View>(R.id.new_message)
         botonMensajeNuevo.setOnClickListener(View.OnClickListener {
