@@ -1,5 +1,7 @@
 package com.poi.loginregistro.Modelos
 
+import android.net.Uri
+
 class ChatMessage(val id: String = "",
                   val text: String = "",
                   val fromId: String = "",

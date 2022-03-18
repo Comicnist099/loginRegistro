@@ -14,6 +14,7 @@
         android:padding="16dp">
 
         <pl.droidsonroids.gif.GifImageView
+            android:scaleType="centerCrop"
 
             android:id="@+id/ivPerfil"
             android:layout_width="50dp"
@@ -37,13 +38,5 @@
             android:textColor="@color/white"
             tools:text="Que tal buen día!" />
 
-        <TextView
-            android:textColor="@color/white"
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"
-            tools:text="23:00" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

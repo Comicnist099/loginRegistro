@@ -96,4 +96,5 @@ class TasksFragment : Fragment() {
                 }
             }
     }
+
 }
