@@ -30,6 +30,7 @@ import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 var contador=0
+var contador2=0
 var Direccion=""
 class ChatLogActivity2 : AppCompatActivity() {
 
@@ -42,11 +43,11 @@ class ChatLogActivity2 : AppCompatActivity() {
     private var uid: String = ""
     private var name: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log2)
-
+        contador=0
+        contador2=0
         recyclerViewChatLog.adapter = adapter
 
 
@@ -115,6 +116,7 @@ class ChatLogActivity2 : AppCompatActivity() {
         }.addOnFailureListener {
 
         }
+
     }
 
     private fun listenFromMessages() {
@@ -143,6 +145,7 @@ class ChatLogActivity2 : AppCompatActivity() {
 
 
                     } else {
+                        contador++
                         adapter.add(ChatFromItem(chatMessage.text, idFoto))
                     }
 
@@ -367,6 +370,10 @@ class ChatLogActivity2 : AppCompatActivity() {
 
 
     class ChatFromItem(val text: String, val idfoto: String) : Item<GroupieViewHolder>() {
+        val fromId = FirebaseAuth.getInstance().uid.toString()
+        val localFile2 = java.io.File.createTempFile("tempImage", "jpg")
+
+        val toId = Direccion.toString()
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
@@ -384,6 +391,15 @@ class ChatLogActivity2 : AppCompatActivity() {
 
             viewHolder.itemView.textView_from.text = text
 
+            val  storageReference2= FirebaseStorage.getInstance().getReference("/user-messages/$toId/$fromId/$position")
+            storageReference2.getFile(localFile2).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                viewHolder.itemView.FotoMandarUsuarioA.isGone=false
+                viewHolder.itemView.FotoMandarUsuarioA.setImageBitmap(bitmap)
+
+            }.addOnFailureListener{
+                viewHolder.itemView.FotoMandarUsuarioA.isGone=true
+            }
         }
 
         override fun getLayout(): Int {
@@ -405,10 +421,13 @@ class ChatLogActivity2 : AppCompatActivity() {
 
 
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-
+            val  storageReference3= FirebaseStorage.getInstance().getReference()
+            storageReference3.delete()
             val  storageReference= FirebaseStorage.getInstance().getReference("/user-messages/$fromId/$toId/$position")
+
             storageReference.getFile(localFile).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                viewHolder.itemView.FotoMandar.isGone=false
                 viewHolder.itemView.FotoMandar.setImageBitmap(bitmap)
 
 

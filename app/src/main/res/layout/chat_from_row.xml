@@ -30,5 +30,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/penguin" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/FotoMandarUsuarioA"
+        android:layout_width="162dp"
+        android:layout_height="152dp"
+        android:visibility="gone"
+        android:src="@drawable/penguin"
+        app:layout_constraintTop_toBottomOf="@+id/textView_from"
+        tools:layout_editor_absoluteX="4dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

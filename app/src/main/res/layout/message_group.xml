@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
             android:textSize="14dp"
             android:textStyle="bold"
             tools:text="Señor:" />
+       mOf="@+id/textView_to" />
 
         <TextView
             android:id="@+id/tv_message"
@@ -39,4 +41,14 @@
             tools:text="Que tal buen día!" />
 
     </LinearLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/FotoMandarUsuario"
+        android:layout_width="204dp"
+        android:layout_height="177dp"
+        android:visibility="gone"
+        android:src="@drawable/penguin"
+        app:layout_constraintTop_toBottomOf="@+id/message_container"
+        tools:layout_editor_absoluteX="0dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
